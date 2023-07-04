@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'category_widget.dart';
 import 'menu_bar.dart';
+import 'art_page.dart';
+
+// 메인페이지 구성
 
 void main() {
-  runApp(MainPage());
+  runApp(ArtPage());
 }
 
 class MainPage extends StatefulWidget {
@@ -26,10 +29,11 @@ class _MainPageState extends State<MainPage> {
         title: const Text(
           "Cateogory",
           style: TextStyle(
-              color: Colors.black87,
-              fontSize: 27,
-              fontFamily: "Nunito Sans",
-              fontWeight: FontWeight.w500),
+            color: Colors.black87,
+            fontSize: 27,
+            fontFamily: "Nunito Sans",
+            fontWeight: FontWeight.w500,
+          ),
         ),
         backgroundColor: Colors.white,
         toolbarHeight: 65,
