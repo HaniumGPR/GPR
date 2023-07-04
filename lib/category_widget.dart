@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 카테고리 list로 받아서 보여줌
+
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({
     super.key,
@@ -37,14 +39,6 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               letterSpacing: 2.0,
             ),
           ),
-          /*Container(
-            height: 20,
-            width: 30,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(40),
-            ),
-          )*/
         ],
       ),
     );
