@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'category_widget.dart';
+import 'education_page.dart';
+import 'fashion_page.dart';
 import 'menu_bar.dart';
 import 'art_page.dart';
 
-// 메인페이지 구성
+// 메인 홈페이지
 
 void main() {
   runApp(MainPage());
@@ -20,7 +22,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    final List<String> categories = ["#예술", "#패션", "#교육"];
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
@@ -39,6 +40,8 @@ class _MainPageState extends State<MainPage> {
         toolbarHeight: 65,
         titleSpacing: 10,
       ),
+
+      // 각 카테고리에 맞는 페이지로 이동하도록 페이지 지정 -> category_widget.dart
       body: Column(
         children: <Widget>[
           CategoryWidget(
@@ -47,11 +50,11 @@ class _MainPageState extends State<MainPage> {
           ),
           CategoryWidget(
             buttonText: "#패션",
-            page: ArtPage(),
+            page: FashionPage(),
           ),
           CategoryWidget(
             buttonText: "#교육",
-            page: ArtPage(),
+            page: EducationPage(),
           ),
         ],
       ),

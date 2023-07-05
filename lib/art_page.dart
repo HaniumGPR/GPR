@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/show_single_category.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'menu_bar.dart';
@@ -37,30 +38,7 @@ class _ArtPageState extends State<ArtPage> {
       home: Scaffold(
         body: Column(
           children: [
-            Container(
-              height: 65,
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              decoration: BoxDecoration(
-                color: Colors.black87,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    "#예술",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: "Nunito Sans",
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            showSingleCategory("#예술"),
             Container(
               width: 300,
               height: 300,
