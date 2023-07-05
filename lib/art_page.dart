@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/show_single_category.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'menu_bar.dart';
 import 'art_page_with_img.dart';
-
-// 페이지 전환 안됨. 수정 필요
 
 class ArtPage extends StatefulWidget {
   const ArtPage({Key? key}) : super(key: key);
@@ -16,7 +13,7 @@ class ArtPage extends StatefulWidget {
 }
 
 class _ArtPageState extends State<ArtPage> {
-  final ImagePicker picker = ImagePicker(); // imagepicker로 갤러리에 있는 이미지 불러옴옴
+  final ImagePicker picker = ImagePicker(); // imagepicker로 갤러리에 있는 이미지 불러옴
 
   // 갤러리에서 이미지 선택
   Future<void> getImage(BuildContext context, ImageSource imageSource) async {
@@ -41,40 +38,16 @@ class _ArtPageState extends State<ArtPage> {
       home: Scaffold(
         body: Column(
           children: [
-            Container(
-              height: 65,
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              decoration: BoxDecoration(
-                color: Colors.black87,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    "#예술",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: "Nunito Sans",
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            showSingleCategory("#예술"),
             Container(
               width: 300,
               height: 300,
               child: TextButton(
-                  onPressed: () {
-                    getImage(context, ImageSource.gallery);
-                  },
+                  onPressed: () => getImage(context, ImageSource.gallery),
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.black38,
                     padding: EdgeInsets.all(5),
+                    alignment: Alignment.center,
                   ),
 
                   // 사진선택 버튼

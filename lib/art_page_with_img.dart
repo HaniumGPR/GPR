@@ -37,7 +37,6 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
   }
 
   // 선택한 사진 보여주기
-  // 아직 선택하지 않았을 경우 '사진 선택' 버튼
   Widget _showPhoto() {
     return Container(
       width: double.infinity,
@@ -57,7 +56,13 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
 
   // 해당 이미지에 사용된 생상 보여주기
   Widget _showColors() {
-    final List<String> colorCode = ["#FFC0CB", "#123456", "#789101"];
+    final List<String> colorCode = [
+      "#FFC0CB",
+      "#123456",
+      "#789101",
+      "#abcdef",
+      "#ghijkl"
+    ];
 
     return ListView.builder(
         itemCount: colorCode.length,
@@ -127,10 +132,15 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
             ),
 
             // 장바구니 아이콘 -> 색상 추가 기능 구현 필요
-            Icon(
-              Icons.shopping_cart,
-              size: 40,
-            )
+            TextButton(
+                onPressed: () {
+                  // 클릭하면 해당 colorCode 장바구니에 추가되도록 -> DB에 넘겨주기
+                },
+                child: Icon(
+                  Icons.shopping_cart,
+                  size: 40,
+                  color: Colors.black,
+                ))
           ],
         )
       ],
