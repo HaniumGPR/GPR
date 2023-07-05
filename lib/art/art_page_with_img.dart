@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'menu_bar.dart';
+import '../menu_bar.dart';
 
 // 이미지 크기 300*300으로 함
-// colorCode 리스트 -> 사진 색상 분석 후 colorCode에 추가해야 함. 현재는 임의로 3개만 넣어놓은 상태
-// 장바구니 아이콘 누르면 해당 색상 장바구니에 추가되도록 기능 구현 필요
+
+// TODO
+// colorCode -> 사진 색상 분석 후 colorCode 업데이트
+// 장바구니 버튼 -> 해당 색상 장바구니에 추가
 
 class ArtPagewithImg extends StatefulWidget {
   const ArtPagewithImg({super.key, required this.imagePath});
@@ -56,14 +58,15 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
 
   // 해당 이미지에 사용된 생상 보여주기
   Widget _showColors() {
-    final List<String> colorCode = [
-      "#FFC0CB",
-      "#123456",
-      "#789101",
-      "#abcdef",
-      "#ghijkl"
+    final List<int> colorCode = [
+      0xffFF0000,
+      0xffFF5E00,
+      0xffFFE400,
+      0xff1FDA11,
+      0xff0900EF,
+      0xff6600FF,
+      0xffFF00DD,
     ];
-
     return ListView.builder(
         itemCount: colorCode.length,
         itemBuilder: (context, index) {
@@ -71,7 +74,7 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
         });
   }
 
-  Container useColors(String colorCode) {
+  Container useColors(int colorCode) {
     return Container(
       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
       decoration: BoxDecoration(
@@ -87,7 +90,7 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
   }
 
   // ignore: non_constant_identifier_names
-  Column colorCodeContainer(String colorCode) {
+  Column colorCodeContainer(int colorCode) {
     return Column(
       children: [
         Container(
@@ -111,15 +114,18 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  // Color(색상 코드)로 변경 필요
-                  color: Colors.pink,
+                  color: Color(colorCode),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: Colors.black87,
                     width: 1,
                   )),
               child: Text(
-                colorCode, // 색상 코드 보여주기
+                "#" +
+                    colorCode
+                        .toRadixString(16)
+                        .toUpperCase()
+                        .substring(2), // 색상 코드 보여주기
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15,

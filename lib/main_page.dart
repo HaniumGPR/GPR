@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'category_widget.dart';
-import 'education_page.dart';
-import 'fashion_page.dart';
+import 'education/education_page.dart';
+import 'fashion/fashion_page.dart';
 import 'menu_bar.dart';
-import 'art_page.dart';
+import 'art/art_page.dart';
 
 // 메인 홈페이지
 

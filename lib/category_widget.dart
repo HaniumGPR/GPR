@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 카테고리 버튼 디자인 및 클릭 이벤트
+// 메인 페이지의 카테고리 버튼
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({
