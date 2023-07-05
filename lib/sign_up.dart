@@ -1,74 +1,121 @@
-import 'package:flutter/material.dart';
+// 회원가입 페이지
 
-class SignUpPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? _email;
-  String? _password;
-  String? _confirmPassword;
-  bool _wrongConfirmPassword = false;
+class _SignupPageState extends State<SignupPage> {
+  final _formKey = GlobalKey<FormState>();
+  var _idController = TextEditingController();
+  var _passwordController = TextEditingController();
+  var _passwordConfirmationController = TextEditingController();
 
-  void checkPassword() {
-    if (_password != _confirmPassword) {
-      setState(() {
-        _wrongConfirmPassword = true;
-      });
-    } else {
-      setState(() {
-        _wrongConfirmPassword = false;
-      });
-    }
-  }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('회원가입')),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: '이메일 주소'),
-                keyboardType: TextInputType.emailAddress,
-                onSaved: (String? value) => _email = value,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(labelText: '비밀번호'),
-                obscureText: true,
-                onChanged: (String? value) => _password = value,
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: '비밀번호 확인',
-                  errorText: _wrongConfirmPassword ? '비밀번호가 일치하지 않아요' : null,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), // '뒤로 돌아가기' 버튼의 아이콘을 설정합니다.
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context); // '뒤로 돌아가기' 버튼이 눌리면 이전 페이지로 돌아갑니다.
+          },
+        ),
+        title: Text(
+          '회원가입',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 40,
                 ),
-                onChanged: (String? value) {
-                  _confirmPassword = value;
-                  checkPassword();
-                },
-                obscureText: true,
-              ),
-              SizedBox(height: 24),
-              RaisedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _idController,
+                    decoration: InputDecoration(
+                      labelText: 'ID',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your ID';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _passwordConfirmationController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password Confirmation',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your password';
+                      }
+                      if (_passwordController.text != value) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print('계정 생성');
 
-                    // 회원가입 처리를 추가해주세요(데이터베이스 연동)
-                    Navigator.pop(context);
-                  }
-                },
-                child: Text('가입하기'),
-              ),
-            ],
+                      // 계정 생성 로직 구현
+                    }
+                  },
+                  child: Text('계정 생성'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    onPrimary: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -76,4 +123,16 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-RaisedButton({required Null Function() onPressed, required Text child}) {}
+class NextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Next Page'),
+      ),
+      body: Center(
+        child: Text('Welcome to the next page!'),
+      ),
+    );
+  }
+}
