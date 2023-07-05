@@ -7,7 +7,7 @@ import 'art_page.dart';
 // 메인페이지 구성
 
 void main() {
-  runApp(ArtPage());
+  runApp(MainPage());
 }
 
 class MainPage extends StatefulWidget {
@@ -39,12 +39,21 @@ class _MainPageState extends State<MainPage> {
         toolbarHeight: 65,
         titleSpacing: 10,
       ),
-      body: ListView.builder(
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          String cat = categories[index];
-          return CategoryWidget(category: cat);
-        },
+      body: Column(
+        children: <Widget>[
+          CategoryWidget(
+            buttonText: "#예술",
+            page: ArtPage(),
+          ),
+          CategoryWidget(
+            buttonText: "#패션",
+            page: ArtPage(),
+          ),
+          CategoryWidget(
+            buttonText: "#교육",
+            page: ArtPage(),
+          ),
+        ],
       ),
       bottomNavigationBar: CustomNavigationBar(),
     ));
