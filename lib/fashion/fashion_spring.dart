@@ -4,9 +4,6 @@ import 'fashion_colorlist.dart';
 import '../show_single_category.dart';
 import '../menu_bar.dart';
 
-// 색상마다 선택/선택해제 표시 해야 함 -> colorlist의 onPressed() 수정해야 함
-// 선택된 색상은 list에 추가, 선택해제되면 list에서 제거 -> 선택완료 버튼 누르면 DB에 저장
-
 class SpringPage extends StatefulWidget {
   const SpringPage({Key? key}) : super(key: key);
 

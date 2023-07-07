@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/login.dart';
 
 import 'category_widget.dart';
 import 'education/education_page.dart';
@@ -9,7 +10,7 @@ import 'art/art_page.dart';
 // 메인 홈페이지
 
 void main() {
-  runApp(MainPage());
+  runApp(LoginApp());
 }
 
 class MainPage extends StatefulWidget {

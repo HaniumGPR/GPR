@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/main_page.dart';
 import 'package:hanium_gpr/sign_up.dart';
 
 class LoginApp extends StatelessWidget {
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 24),
@@ -86,7 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 24,
                 ),
                 Container(
-                  width: 200,
+                  width: double.infinity,
+                  height: 45,
+                  margin: EdgeInsets.symmetric(horizontal: 24),
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -94,28 +97,43 @@ class _LoginPageState extends State<LoginPage> {
                         var password = _passwordController.text;
                         print('User entered ID: $id, password: $password');
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => NextPage()));
+                            builder: (context) => MainPage()));
                       }
                     },
                     child: Text('로그인'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      textStyle: TextStyle(fontSize: 18),
+                      backgroundColor: Colors.black87,
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: "Nunito Sans",
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 3.0,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 24,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => SignupPage()));
-                  },
-                  child: Text('회원가입'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    textStyle: TextStyle(fontSize: 12),
+                Container(
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignupPage()));
+                    },
+                    child: Text('회원가입'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black54,
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Nunito Sans",
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 3.0,
+                      ),
+                    ),
                   ),
                 ),
               ],
