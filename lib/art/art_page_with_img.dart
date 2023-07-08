@@ -56,7 +56,7 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
     );
   }
 
-  // 해당 이미지에 사용된 생상 보여주기
+  // 해당 이미지에 사용된 색상 보여주기
   Widget _showColors() {
     final List<int> colorCode = [
       0xffFF0000,

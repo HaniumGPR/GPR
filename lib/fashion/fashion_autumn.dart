@@ -13,11 +13,17 @@ class AutumnPage extends StatefulWidget {
 
 class _AutumnPageState extends State<AutumnPage> {
   final List<int> colorCode = [
-    0xffFFC0CB,
-    0xff123456,
-    0xff789101,
-    0xffFFFF00,
-    0xffFA5305
+    0xff29536A,
+    0xff8BC4CC,
+    0xff6D8A8C,
+    0xff847356,
+    0xffA3D8A0,
+    0xff597229,
+    0xff96752E,
+    0xffD8B73D,
+    0xffEFC8AB,
+    0xffDA895C,
+    0xff893428
   ];
 
   @override
