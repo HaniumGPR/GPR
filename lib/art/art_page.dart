@@ -19,7 +19,7 @@ class _ArtPageState extends State<ArtPage> {
   Future<void> getImage(BuildContext context, ImageSource imageSource) async {
     final XFile? pickedFile = await picker.pickImage(source: imageSource);
 
-    // 이미지가 제대로 선택되었다면 다음 페이지로 넘어감 -> 오류 발생
+    // 이미지가 제대로 선택되었다면 다음 페이지로 넘어감
     if (pickedFile != null) {
       // ignore: use_build_context_synchronously
       Navigator.push(

@@ -13,11 +13,19 @@ class WinterPage extends StatefulWidget {
 
 class _WinterPageState extends State<WinterPage> {
   final List<int> colorCode = [
-    0xffFFC0CB,
-    0xff123456,
-    0xff789101,
-    0xffFFFF00,
-    0xffFA5305
+    0xff16282F,
+    0xff29536A,
+    0xffB7BBBD,
+    0xff3E6998,
+    0xff0F1728,
+    0xff1C38AD,
+    0xff857874,
+    0xff271311,
+    0xff542F90,
+    0xff2B1052,
+    0xff7B3054,
+    0xffCA89A5,
+    0xffC9404A
   ];
 
   @override

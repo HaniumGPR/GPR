@@ -13,11 +13,19 @@ class SpringPage extends StatefulWidget {
 
 class _SpringPageState extends State<SpringPage> {
   final List<int> colorCode = [
-    0xffFFC0CB,
-    0xff123456,
-    0xff789101,
-    0xffFFFF00,
-    0xffFA5305
+    0xffC73E29,
+    0xffE6652F,
+    0xffDA895C,
+    0xffF0B4B3,
+    0xffF2D7C7,
+    0xffFFF3B8,
+    0xffAED145,
+    0xffA3D8A0,
+    0xff71B27A,
+    0xff488A38,
+    0xffC4EAD8,
+    0xff7ABBCA,
+    0xff3E6998
   ];
 
   @override
