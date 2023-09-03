@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../show_single_category.dart';
 import '../menu_bar.dart';
-import 'education_colorlist.dart';
+import '../show_single_category.dart';
 
 class EduDetailPage extends StatefulWidget {
   final List<int> colorList;
@@ -34,6 +33,22 @@ class _EduDetailPageState extends State<EduDetailPage> {
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
+      ),
+    );
+  }
+
+  Container showColorList(BuildContext context, int colorCode) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      height: 100,
+      width: double.infinity,
+      alignment: Alignment.center,
+      color: Color(colorCode),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pop(context, colorCode);
+        },
+        child: Text(''),
       ),
     );
   }

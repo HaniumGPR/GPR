@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/show_toast.dart';
 
 import '../menu_bar.dart';
 import '../show_single_category.dart';
@@ -49,7 +50,15 @@ class _FashionDetailPageState extends State<FashionDetailPage> {
       alignment: Alignment.center,
       color: Color(colorCode),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          // TODO : 선택 <-> 해제 시각적으로 보여주어야 함
+          if (selectColorList.contains(colorCode)) {
+            // 이미 선택한 색상이라면 -> 선택 해제
+            selectColorList.remove(colorCode);
+          } else {
+            selectColorList.add(colorCode);
+          }
+        },
         child: Text(
           "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
           style: TextStyle(
@@ -79,7 +88,8 @@ class _FashionDetailPageState extends State<FashionDetailPage> {
       ),
       child: TextButton(
         onPressed: () {
-          // db에 색상 추가
+          // TODO : db에 selectColorList 추가 -> 기존에 저장된 색상이 다시 추가된다면?
+          showToast("장바구니에 선택한 색상을 추가했습니다.");
           Navigator.pop(context);
         },
         child: Text(

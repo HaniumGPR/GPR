@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/show_toast.dart';
 
 import '../menu_bar.dart';
 import '../show_single_category.dart';
-
-// 장바구니 담기 버튼 클릭시 colorCode 장바구니에 추가(DB에 저장)
 
 class MixPage extends StatefulWidget {
   final List<int> selectColorList;
@@ -22,7 +21,7 @@ class _MixPageState extends State<MixPage> {
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     deviceHeight = deviceSize.height;
-    Color mixedColor = Color(getMixedColor(widget.selectColorList));
+    var mixedColor = getMixedColor(widget.selectColorList);
 
     return MaterialApp(
       home: Scaffold(
@@ -34,7 +33,7 @@ class _MixPageState extends State<MixPage> {
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
-                color: mixedColor,
+                color: Color(mixedColor),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: Colors.black87,
@@ -55,7 +54,9 @@ class _MixPageState extends State<MixPage> {
               child: TextButton(
                 onPressed: () {
                   Navigator.pop(context);
-                }, // 버튼을 누르면 해당 색상 장바구니에 추가
+                  showToast("장바구니에 색상을 추가했습니다.");
+                  // TODO : mixedColor DB에 추가
+                },
                 child: Text(
                   "장바구니 담기",
                   style: TextStyle(

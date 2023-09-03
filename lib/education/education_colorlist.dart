@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 final List<int> colorCodeRed = [
   0xffFF0000,
   0xffFF3333,
@@ -31,19 +29,3 @@ final List<int> colorCodeBlue = [
   0xff9999FF,
   0xffCCCCFF,
 ];
-
-Container showColorList(BuildContext context, int colorCode) {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-    height: 100,
-    width: double.infinity,
-    alignment: Alignment.center,
-    color: Color(colorCode),
-    child: TextButton(
-      onPressed: () {
-        Navigator.pop(context, colorCode);
-      },
-      child: Text(''),
-    ),
-  );
-}

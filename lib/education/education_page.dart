@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hanium_gpr/education/education_colorlist.dart';
 import 'package:hanium_gpr/education/education_detail.dart';
 import 'package:hanium_gpr/education/get_color_from_list.dart';
 
 import '../menu_bar.dart';
 import '../show_single_category.dart';
+import '../show_toast.dart';
 import 'education_mix.dart';
-
-// 사용자가 색상을 선택하면 selectColor가 업데이트 되어 해당 색상이 화면에 표시되도록
-// 각 색들의 colorCode 변경
-// 혼합버튼 클릭 -> 선택된 색상들의 혼합된 색 MixPage()로 전달
-// 혼합버튼 클릭 시 선택된 색이 0~1개일 경우 메시지 표시, MixPage()로 넘어가지 않음
 
 class EducationPage extends StatefulWidget {
   const EducationPage({Key? key}) : super(key: key);
@@ -47,19 +42,7 @@ class _EducationPageState extends State<EducationPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: EdgeInsets.all(5),
-                  width: (deviceWidth - 70) / 2,
-                  height: deviceHeight - 400,
-                  decoration: BoxDecoration(
-                    color: Color(getColorFromList(selectColorList, 0)),
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black87,
-                      width: 1,
-                    ),
-                  ),
-                ),
+                selectedColorContainer(getColorFromList(selectColorList, 0)),
                 Container(
                   width: 50,
                   height: deviceHeight - 400,
@@ -74,28 +57,35 @@ class _EducationPageState extends State<EducationPage> {
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(5),
-                  width: (deviceWidth - 70) / 2,
-                  height: deviceHeight - 400,
-                  decoration: BoxDecoration(
-                    color: Color(getColorFromList(selectColorList, 1)),
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black87,
-                      width: 1,
-                    ),
-                  ),
-                ),
+                selectedColorContainer(getColorFromList(selectColorList, 1)),
               ],
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              reset(),
-              mix(), // 혼합하기 버튼
-            ]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                reset(),
+                mix(), // 혼합하기 버튼
+              ],
+            ),
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
+      ),
+    );
+  }
+
+  Container selectedColorContainer(int colorCode) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: (deviceWidth - 70) / 2,
+      height: deviceHeight - 400,
+      decoration: BoxDecoration(
+        color: Color(colorCode),
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: Colors.black87,
+          width: 1,
+        ),
       ),
     );
   }
@@ -153,7 +143,7 @@ class _EducationPageState extends State<EducationPage> {
           setState(() {
             selectColorList.clear();
           });
-          showTost("선택한 색상을 초기화했습니다.");
+          showToast("선택한 색상을 초기화했습니다.");
         },
         child: Text(
           "초기화",
@@ -194,7 +184,7 @@ class _EducationPageState extends State<EducationPage> {
               ),
             );
           } else {
-            showTost("색상 2개를 선택해주세요");
+            showToast("색상 2개를 선택해주세요");
           }
         },
         child: Text(
@@ -208,15 +198,5 @@ class _EducationPageState extends State<EducationPage> {
         ),
       ),
     );
-  }
-
-  void showTost(String toastMsg) {
-    Fluttertoast.showToast(
-        msg: toastMsg,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Color(0x66000000),
-        fontSize: 15,
-        textColor: Colors.white,
-        toastLength: Toast.LENGTH_SHORT);
   }
 }
