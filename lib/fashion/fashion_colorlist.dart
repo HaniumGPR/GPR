@@ -1,53 +1,63 @@
 import 'package:flutter/material.dart';
 
-// 각 톤에 맞는 color 보여주기
-Container showColorList(int colorCode) {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-    height: 70,
-    width: double.infinity,
-    alignment: Alignment.center,
-    color: Color(colorCode),
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        "#" + colorCode.toRadixString(16).toUpperCase().substring(2),
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 15,
-          color: Colors.black,
-          fontFamily: "Nunito Sans",
-        ),
-      ),
-    ),
-  );
-}
+final List<int> colorCodeSpring = [
+  0xffC73E29,
+  0xffE6652F,
+  0xffDA895C,
+  0xffF0B4B3,
+  0xffF2D7C7,
+  0xffFFF3B8,
+  0xffAED145,
+  0xffA3D8A0,
+  0xff71B27A,
+  0xff488A38,
+  0xffC4EAD8,
+  0xff7ABBCA,
+  0xff3E6998
+];
 
-Container select() {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-    height: 50,
-    width: double.infinity,
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(
-        color: Colors.black87,
-        width: 1,
-      ),
-    ),
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        "선택 완료",
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 15,
-          color: Colors.black,
-          fontFamily: "Nunito Sans",
-        ),
-      ),
-    ),
-  );
-}
+final List<int> colorCodeSummer = [
+  0xffEFF3B8,
+  0xffC4EAD8,
+  0xffCCE6EE,
+  0xff4C6AB4,
+  0xff7493E0,
+  0xffA9BCF2,
+  0xffD1DDF4,
+  0xffDCD6F4,
+  0xffC0AED6,
+  0xff9E7DD1,
+  0xffE9C7DD,
+  0xffDC9FBA,
+  0xffD4779C
+];
+
+final List<int> colorCodeAutum = [
+  0xff29536A,
+  0xff8BC4CC,
+  0xff6D8A8C,
+  0xff847356,
+  0xffA3D8A0,
+  0xff597229,
+  0xff96752E,
+  0xffD8B73D,
+  0xffEFC8AB,
+  0xffDA895C,
+  0xff893428
+];
+
+final List<int> colorCodeWinter = [
+  0xff16282F,
+  0xff29536A,
+  0xffB7BBBD,
+  0xff3E6998,
+  0xff0F1728,
+  0xff1C38AD,
+  0xff857874,
+  0xff271311,
+  0xff542F90,
+  0xff2B1052,
+  0xff7B3054,
+  0xffCA89A5,
+  0xffC9404A
+];

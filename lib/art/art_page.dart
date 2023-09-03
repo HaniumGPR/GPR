@@ -33,13 +33,12 @@ class _ArtPageState extends State<ArtPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
           children: [
             showSingleCategory("#예술"),
-            Container(
+            SizedBox(
               width: 300,
               height: 300,
               child: TextButton(

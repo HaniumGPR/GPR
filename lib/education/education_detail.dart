@@ -4,36 +4,30 @@ import '../show_single_category.dart';
 import '../menu_bar.dart';
 import 'education_colorlist.dart';
 
-class EduYellowPage extends StatefulWidget {
-  const EduYellowPage({Key? key}) : super(key: key);
+class EduDetailPage extends StatefulWidget {
+  final List<int> colorList;
+  final String colorCategory;
+
+  const EduDetailPage(
+      {super.key, required this.colorList, required this.colorCategory});
 
   @override
-  State<EduYellowPage> createState() => _EduYellowPageState();
+  State<EduDetailPage> createState() => _EduDetailPageState();
 }
 
-class _EduYellowPageState extends State<EduYellowPage> {
-  final List<int> colorCode = [
-    0xffFFB400,
-    0xffFFC314,
-    0xffFFCD28,
-    0xffFFDC3C,
-    0xffFFF064,
-    0xffFFFF96,
-  ];
-
+class _EduDetailPageState extends State<EduDetailPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
           children: [
-            showSingleCategory("#YELLOW"),
+            showSingleCategory(widget.colorCategory),
             Expanded(
               child: ListView.builder(
-                itemCount: colorCode.length,
+                itemCount: widget.colorList.length,
                 itemBuilder: (context, index) {
-                  return showColorList(colorCode[index]);
+                  return showColorList(this.context, widget.colorList[index]);
                 },
               ),
             ),

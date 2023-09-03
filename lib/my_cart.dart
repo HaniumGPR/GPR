@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'menu_bar.dart';
 
-// 장바구니
-
-// TODO
 // colorCode -> DB에서 불러와야 함
 // 색상출력 버튼 - onPressed
 
@@ -16,6 +13,7 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
   List<int> colorCode = [
     0xffFFFF99,
@@ -33,7 +31,6 @@ class _MyCartState extends State<MyCart> {
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     deviceHeight = deviceSize.height;
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
@@ -115,7 +112,7 @@ Container showColorList(int colorCode) {
     child: TextButton(
       onPressed: () {},
       child: Text(
-        "#" + colorCode.toRadixString(16).toUpperCase().substring(2),
+        "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
         style: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 17,

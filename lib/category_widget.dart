@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-// 메인 페이지의 카테고리 버튼
-
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({
+    super.key,
     required this.buttonText,
     required this.page,
   });
@@ -18,7 +17,6 @@ class CategoryWidget extends StatefulWidget {
 class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         height: 65,
         width: double.infinity,

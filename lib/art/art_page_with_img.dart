@@ -6,7 +6,6 @@ import '../menu_bar.dart';
 
 // 이미지 크기 300*300으로 함
 
-// TODO
 // colorCode -> 사진 색상 분석 후 colorCode 업데이트
 // 장바구니 버튼 -> 해당 색상 장바구니에 추가
 
@@ -21,7 +20,6 @@ class ArtPagewithImg extends StatefulWidget {
 class _ArtPagewithImgState extends State<ArtPagewithImg> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -121,11 +119,7 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
                     width: 1,
                   )),
               child: Text(
-                "#" +
-                    colorCode
-                        .toRadixString(16)
-                        .toUpperCase()
-                        .substring(2), // 색상 코드 보여주기
+                "#${colorCode.toRadixString(16).toUpperCase().substring(2)}", // 색상 코드 보여주기
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15,
