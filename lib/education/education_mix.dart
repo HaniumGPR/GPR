@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/show_toast.dart';
 
-import '../show_single_category.dart';
 import '../menu_bar.dart';
-
-// colorCode : 합쳐진 색
-
-// TODO
-// 장바구니 담기 버튼 클릭시 colorCode 장바구니에 추가(DB에 저장)
+import '../show_single_category.dart';
 
 class MixPage extends StatefulWidget {
-  const MixPage({Key? key}) : super(key: key);
+  final List<int> selectColorList;
+
+  const MixPage({super.key, required this.selectColorList});
 
   @override
   State<MixPage> createState() => _MixPageState();
 }
 
 class _MixPageState extends State<MixPage> {
+  // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
-  var colorCode = 0xffFF99CC;
 
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     deviceHeight = deviceSize.height;
+    var mixedColor = getMixedColor(widget.selectColorList);
 
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -35,7 +33,7 @@ class _MixPageState extends State<MixPage> {
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
-                color: Color(colorCode),
+                color: Color(mixedColor),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: Colors.black87,
@@ -54,7 +52,11 @@ class _MixPageState extends State<MixPage> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: TextButton(
-                onPressed: () {}, // 버튼을 누르면 해당 색상 장바구니에 추가
+                onPressed: () {
+                  Navigator.pop(context);
+                  showToast("장바구니에 색상을 추가했습니다.");
+                  // TODO : mixedColor DB에 추가
+                },
                 child: Text(
                   "장바구니 담기",
                   style: TextStyle(
@@ -73,4 +75,28 @@ class _MixPageState extends State<MixPage> {
       ),
     );
   }
+}
+
+int getMixedColor(List<int> selectColorList) {
+  int alphaSum = 0;
+  int redSum = 0;
+  int greenSum = 0;
+  int blueSum = 0;
+
+  for (int color in selectColorList) {
+    alphaSum += (color >> 24) & 0xFF;
+    redSum += (color >> 16) & 0xFF;
+    greenSum += (color >> 8) & 0xFF;
+    blueSum += color & 0xFF;
+  }
+
+  int alphaAvg = alphaSum ~/ 2;
+  int redAvg = redSum ~/ 2;
+  int greenAvg = greenSum ~/ 2;
+  int blueAvg = blueSum ~/ 2;
+
+  int mixedColor =
+      (alphaAvg << 24) | (redAvg << 16) | (greenAvg << 8) | blueAvg;
+
+  return mixedColor;
 }

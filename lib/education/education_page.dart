@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/education/education_colorlist.dart';
+import 'package:hanium_gpr/education/education_detail.dart';
+import 'package:hanium_gpr/education/get_color_from_list.dart';
 
-import 'education_mix.dart';
-import 'education_blue.dart';
-import 'education_green.dart';
-import 'education_red.dart';
-import 'education_yellow.dart';
-
-import '../show_single_category.dart';
 import '../menu_bar.dart';
-
-// TODO
-// 사용자가 색상을 선택하면 selectColor가 업데이트 되어 해당 색상이 화면에 표시되도록
-// 각 색들의 colorCode 변경
-// 혼합버튼 클릭 -> 선택된 색상들의 혼합된 색 MixPage()로 전달
-// 혼합버튼 클릭 시 선택된 색이 0~1개일 경우 메시지 표시, MixPage()로 넘어가지 않음
+import '../show_single_category.dart';
+import '../show_toast.dart';
+import 'education_mix.dart';
 
 class EducationPage extends StatefulWidget {
   const EducationPage({Key? key}) : super(key: key);
@@ -23,15 +16,15 @@ class EducationPage extends StatefulWidget {
 }
 
 class _EducationPageState extends State<EducationPage> {
+  // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceWidth, deviceHeight;
-  List<int> selectColor = [0xFFFFFF, 0xFFFFFF];
+  List<int> selectColorList = [];
 
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     deviceWidth = deviceSize.width;
     deviceHeight = deviceSize.height;
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -40,28 +33,16 @@ class _EducationPageState extends State<EducationPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                showColor(Colors.red, EduRedPage()),
-                showColor(Colors.blue, EduBluePage()),
-                showColor(Colors.yellow, EduYellowPage()),
-                showColor(Colors.green, EduGreenPage()),
+                showColorPage(Colors.red, colorCodeRed, "#RED"),
+                showColorPage(Colors.blue, colorCodeBlue, "BLUE"),
+                showColorPage(Colors.yellow, colorCodeYellow, "YELLOW"),
+                showColorPage(Colors.green, colorCodeGreen, "GREEN"),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: EdgeInsets.all(5),
-                  width: (deviceWidth - 70) / 2,
-                  height: deviceHeight - 400,
-                  decoration: BoxDecoration(
-                    color: Color(selectColor[0]),
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black87,
-                      width: 1,
-                    ),
-                  ),
-                ),
+                selectedColorContainer(getColorFromList(selectColorList, 0)),
                 Container(
                   width: 50,
                   height: deviceHeight - 400,
@@ -76,22 +57,16 @@ class _EducationPageState extends State<EducationPage> {
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(5),
-                  width: (deviceWidth - 70) / 2,
-                  height: deviceHeight - 400,
-                  decoration: BoxDecoration(
-                    color: Color(selectColor[0]),
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black87,
-                      width: 1,
-                    ),
-                  ),
-                ),
+                selectedColorContainer(getColorFromList(selectColorList, 1)),
               ],
             ),
-            mix(), // 혼합하기 버튼
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                reset(),
+                mix(), // 혼합하기 버튼
+              ],
+            ),
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
@@ -99,7 +74,23 @@ class _EducationPageState extends State<EducationPage> {
     );
   }
 
-  Container showColor(Color color, Widget page) {
+  Container selectedColorContainer(int colorCode) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: (deviceWidth - 70) / 2,
+      height: deviceHeight - 400,
+      decoration: BoxDecoration(
+        color: Color(colorCode),
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: Colors.black87,
+          width: 1,
+        ),
+      ),
+    );
+  }
+
+  Container showColorPage(Color color, List<int> colorList, String str) {
     return Container(
       margin: EdgeInsets.all(5),
       height: 130,
@@ -113,22 +104,31 @@ class _EducationPageState extends State<EducationPage> {
         ),
       ),
       child: TextButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          int? selectedColor = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => page),
+            MaterialPageRoute(
+                builder: (context) =>
+                    EduDetailPage(colorList: colorList, colorCategory: str)),
           );
+          if (selectedColor != null) {
+            setState(() {
+              if (selectColorList.length < 2) {
+                selectColorList.add(selectedColor);
+              }
+            });
+          }
         },
         child: Text(''),
       ),
     );
   }
 
-  Container mix() {
+  Container reset() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       height: 50,
-      width: deviceWidth - 200,
+      width: deviceWidth / 2 - 20,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -140,10 +140,52 @@ class _EducationPageState extends State<EducationPage> {
       ),
       child: TextButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MixPage()),
-          );
+          setState(() {
+            selectColorList.clear();
+          });
+          showToast("선택한 색상을 초기화했습니다.");
+        },
+        child: Text(
+          "초기화",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            color: Colors.black,
+            fontFamily: "Nunito Sans",
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container mix() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      height: 50,
+      width: deviceWidth / 2 - 20,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: Colors.black87,
+          width: 1,
+        ),
+      ),
+      child: TextButton(
+        onPressed: () {
+          if (selectColorList.length == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MixPage(
+                  selectColorList: selectColorList,
+                ),
+              ),
+            );
+          } else {
+            showToast("색상 2개를 선택해주세요");
+          }
         },
         child: Text(
           "혼합",

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/fashion/fashion_colorlist.dart';
+import 'package:hanium_gpr/fashion/fashion_detail.dart';
 
-import 'fashion_autumn.dart';
-import 'fashion_spring.dart';
-import 'fashion_summer.dart';
-import 'fashion_winter.dart';
-import '../show_single_category.dart';
 import '../menu_bar.dart';
+import '../show_single_category.dart';
 
-// TODO
-// 각 톤 별로 색상 변경 or 이미지 추가
-// 각 톤의 색상코드 변경하기
+// 각 톤 별로 이미지 추가
 // 색상마다 선택/선택해제 표시 -> fashion_colorlist의 onPressed() 수정
 // 선택된 색상은 list에 추가, 선택해제되면 list에서 제거 -> 선택완료 버튼 누르면 장바구니에 추가(DB에 저장)
 
@@ -21,22 +17,22 @@ class FashionPage extends StatefulWidget {
 }
 
 class _FashionPageState extends State<FashionPage> {
+  // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
 
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     deviceHeight = deviceSize.height;
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
           children: [
             showSingleCategory("#패션"),
-            fashionTone("봄 웜톤", SpringPage()),
-            fashionTone("여름 쿨톤", SummerPage()),
-            fashionTone("가을 웜톤", AutumnPage()),
-            fashionTone("겨울 쿨톤", WinterPage()),
+            fashionToneBtn("봄 웜톤", colorCodeSpring),
+            fashionToneBtn("여름 쿨톤", colorCodeSummer),
+            fashionToneBtn("가을 웜톤", colorCodeAutum),
+            fashionToneBtn("겨울 쿨톤", colorCodeWinter),
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
@@ -44,7 +40,7 @@ class _FashionPageState extends State<FashionPage> {
     );
   }
 
-  Container fashionTone(String tone, Widget page) {
+  Container fashionToneBtn(String tone, List<int> colorList) {
     return Container(
         width: double.infinity,
         height: (deviceHeight - 320) / 4,
@@ -58,7 +54,9 @@ class _FashionPageState extends State<FashionPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => page),
+              MaterialPageRoute(
+                  builder: (context) => FashionDetailPage(
+                      colorList: colorList, colorSeason: tone)),
             );
           },
           child: Container(

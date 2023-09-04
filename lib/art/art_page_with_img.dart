@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../menu_bar.dart';
 
-// 이미지 크기 300*300으로 함
-
-// TODO
-// colorCode -> 사진 색상 분석 후 colorCode 업데이트
-// 장바구니 버튼 -> 해당 색상 장바구니에 추가
-
 class ArtPagewithImg extends StatefulWidget {
   const ArtPagewithImg({super.key, required this.imagePath});
   final String imagePath;
@@ -21,7 +15,6 @@ class ArtPagewithImg extends StatefulWidget {
 class _ArtPagewithImgState extends State<ArtPagewithImg> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -30,7 +23,8 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
             SizedBox(height: 10),
             Expanded(
               child: _showColors(),
-            )
+            ),
+            completeBtn(context),
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
@@ -38,7 +32,35 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
     );
   }
 
-  // 선택한 사진 보여주기
+  Container completeBtn(BuildContext context) {
+    return Container(
+      height: 55,
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text(
+          "완료",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Colors.white,
+            fontFamily: "Nunito Sans",
+            letterSpacing: 2.0,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _showPhoto() {
     return Container(
       width: double.infinity,
@@ -56,9 +78,9 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
     );
   }
 
-  // 해당 이미지에 사용된 색상 보여주기
+  // TODO : 해당 이미지에 사용된 색상 보여주기 -> colorCodeList
   Widget _showColors() {
-    final List<int> colorCode = [
+    List<int> colorCodeList = [
       0xffFF0000,
       0xffFF5E00,
       0xffFFE400,
@@ -68,20 +90,22 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
       0xffFF00DD,
     ];
     return ListView.builder(
-        itemCount: colorCode.length,
-        itemBuilder: (context, index) {
-          return useColors(colorCode[index]);
-        });
+      itemCount: colorCodeList.length,
+      itemBuilder: (context, index) {
+        return useColors(colorCodeList[index]);
+      },
+    );
   }
 
   Container useColors(int colorCode) {
     return Container(
       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
       decoration: BoxDecoration(
-          border: Border.all(
-        width: 1,
-        color: Colors.black,
-      )),
+        border: Border.all(
+          width: 1,
+          color: Colors.black,
+        ),
+      ),
       height: 100,
       width: double.infinity,
       alignment: Alignment.centerLeft,
@@ -114,18 +138,15 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  color: Color(colorCode),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.black87,
-                    width: 1,
-                  )),
+                color: Color(colorCode),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.black87,
+                  width: 1,
+                ),
+              ),
               child: Text(
-                "#" +
-                    colorCode
-                        .toRadixString(16)
-                        .toUpperCase()
-                        .substring(2), // 색상 코드 보여주기
+                "#${colorCode.toRadixString(16).toUpperCase().substring(2)}", // 색상 코드 보여주기
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15,
@@ -136,17 +157,16 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
                 textAlign: TextAlign.center,
               ),
             ),
-
-            // 장바구니 아이콘 -> 색상 추가 기능 구현 필요
             TextButton(
-                onPressed: () {
-                  // 클릭하면 해당 colorCode 장바구니에 추가되도록 -> DB에 넘겨주기
-                },
-                child: Icon(
-                  Icons.shopping_cart,
-                  size: 40,
-                  color: Colors.black,
-                ))
+              onPressed: () {
+                // TODO : 클릭하면 해당 colorCode DB에 저장
+              },
+              child: Icon(
+                Icons.shopping_cart,
+                size: 40,
+                color: Colors.black,
+              ),
+            )
           ],
         )
       ],

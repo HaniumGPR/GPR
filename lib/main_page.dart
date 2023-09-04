@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/login.dart';
+//import 'package:hanium_gpr/login.dart';
 
 import 'category_widget.dart';
 import 'education/education_page.dart';
@@ -10,11 +10,11 @@ import 'art/art_page.dart';
 // 메인 홈페이지
 
 void main() {
-  runApp(LoginApp());
+  runApp(MainPage());
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -23,7 +23,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
         home: Scaffold(
       backgroundColor: Colors.white,
