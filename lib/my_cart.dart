@@ -15,6 +15,8 @@ class MyCart extends StatefulWidget {
 class _MyCartState extends State<MyCart> {
   // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
+  var selectedColor;
+
   List<int> colorCode = [
     0xffFFFF99,
     0xffCCFFCC,
@@ -81,7 +83,10 @@ class _MyCartState extends State<MyCart> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO : RGB 전달
+                  separateToRGB(selectedColor);
+                },
                 child: Text(
                   "색상 출력",
                   style: TextStyle(
@@ -100,25 +105,39 @@ class _MyCartState extends State<MyCart> {
       ),
     );
   }
-}
 
-Container showColorList(int colorCode) {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-    height: 60,
-    width: double.infinity,
-    alignment: Alignment.center,
-    color: Color(colorCode),
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 17,
-          color: Colors.black,
+  Container showColorList(int colorCode) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      height: 60,
+      width: double.infinity,
+      alignment: Alignment.center,
+      color: Color(colorCode),
+      child: TextButton(
+        onPressed: () {
+          // TODO : 해당 색상이 선택되었다는 것을 시각적으로 보여주어야 함
+          // 만약 a 색상이 선택된 상태에서 b 색상이 선택되었다면 -> a 색상은 선택 해제, b 색상 선택 표시
+          selectedColor = colorCode;
+        },
+        child: Text(
+          "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 17,
+            color: Colors.black,
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
+}
+
+List<int> separateToRGB(int colorCode) {
+  int codeR = (colorCode >> 16) & 0xFF;
+  int codeG = (colorCode >> 8) & 0xFF;
+  int codeB = (colorCode) & 0xFF;
+  print(codeR);
+  print(codeG);
+  print(codeB);
+  return [codeR, codeG, codeB];
 }
