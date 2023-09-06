@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import '../menu_bar.dart';
 
 class ArtPagewithImg extends StatefulWidget {
-  const ArtPagewithImg({super.key, required this.imagePath});
+  const ArtPagewithImg(
+      {super.key, required this.imagePath, required this.colorCodeList});
   final String imagePath;
+  final List<int> colorCodeList;
 
   @override
   State<ArtPagewithImg> createState() => _ArtPagewithImgState();
@@ -80,19 +82,10 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
 
   // TODO : 해당 이미지에 사용된 색상 보여주기 -> colorCodeList
   Widget _showColors() {
-    List<int> colorCodeList = [
-      0xffFF0000,
-      0xffFF5E00,
-      0xffFFE400,
-      0xff1FDA11,
-      0xff0900EF,
-      0xff6600FF,
-      0xffFF00DD,
-    ];
     return ListView.builder(
-      itemCount: colorCodeList.length,
+      itemCount: widget.colorCodeList.length,
       itemBuilder: (context, index) {
-        return useColors(colorCodeList[index]);
+        return useColors(widget.colorCodeList[index]);
       },
     );
   }

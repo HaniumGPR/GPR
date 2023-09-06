@@ -27,13 +27,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
     super.dispose();
   }
 
-  void _onItemTapped(int index) {
-    _tabController.animateTo(index);
-    /*setState(() {
-      currentIndex = index;
-    });*/
-  }
-
   @override
   Widget build(BuildContext context) {
     /*
@@ -94,7 +87,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
               indicatorColor: Colors.blue,
               unselectedLabelColor: Colors.black,
               labelStyle: TextStyle(fontSize: 15),
-              onTap: _onItemTapped,
               tabs: [
                 // 탭 구성
                 Tab(

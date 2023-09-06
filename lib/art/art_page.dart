@@ -17,15 +17,26 @@ class _ArtPageState extends State<ArtPage> {
 
   // 갤러리에서 이미지 선택
   Future<void> getImage(BuildContext context, ImageSource imageSource) async {
-    final XFile? pickedFile = await picker.pickImage(source: imageSource);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     // 이미지가 제대로 선택되었다면 다음 페이지로 넘어감
     if (pickedFile != null) {
       // ignore: use_build_context_synchronously
+      List<int> colorCodeList = [
+        0xffFF0000,
+        0xffFF5E00,
+        0xffFFE400,
+        0xff1FDA11,
+        0xff0900EF,
+        0xff6600FF,
+        0xffFF00DD,
+      ];
+
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ArtPagewithImg(imagePath: pickedFile.path),
+          builder: (context) => ArtPagewithImg(
+              imagePath: pickedFile.path, colorCodeList: colorCodeList),
         ),
       );
     }
