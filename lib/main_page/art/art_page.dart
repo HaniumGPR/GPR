@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 import '../../menu_bar.dart';
 import '../utils/show_single_category.dart';
@@ -22,15 +25,16 @@ class _ArtPageState extends State<ArtPage> {
     // 이미지가 제대로 선택되었다면 다음 페이지로 넘어감
     if (pickedFile != null) {
       // ignore: use_build_context_synchronously
-      List<int> colorCodeList = [
-        0xffFF0000,
-        0xffFF5E00,
-        0xffFFE400,
-        0xff1FDA11,
-        0xff0900EF,
-        0xff6600FF,
-        0xffFF00DD,
-      ];
+
+      final PaletteGenerator paletteGenerator =
+          await PaletteGenerator.fromImageProvider(
+        FileImage(File(pickedFile.path)),
+      );
+
+      List<Color> colorList = paletteGenerator.paletteColors
+          .map((paletteColor) => paletteColor.color)
+          .toList();
+      List<int> colorCodeList = colorList.map((color) => color.value).toList();
 
       Navigator.push(
         context,
