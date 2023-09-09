@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hanium_gpr/show_toast.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
+import '../../menu_bar.dart';
+import '../../show_single_category.dart';
 
 class MixPage extends StatefulWidget {
   final List<int> selectColorList;

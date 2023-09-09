@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/main_page.dart';
+import 'package:hanium_gpr/main_page/main_page.dart';
 import 'package:hanium_gpr/sign_up.dart';
 
 class LoginApp extends StatelessWidget {

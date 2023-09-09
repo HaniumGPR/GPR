@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/education/education_colorlist.dart';
-import 'package:hanium_gpr/education/education_detail.dart';
-import 'package:hanium_gpr/education/get_color_from_list.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
-import '../show_toast.dart';
+import '../../menu_bar.dart';
+import '../../show_single_category.dart';
+import '../../show_toast.dart';
+import 'education_colorlist.dart';
+import 'education_detail.dart';
 import 'education_mix.dart';
+import 'get_color_from_list.dart';
 
 class EducationPage extends StatefulWidget {
   const EducationPage({Key? key}) : super(key: key);

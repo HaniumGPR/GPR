@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
+import '../../menu_bar.dart';
+import '../../show_single_category.dart';
 
 class EduDetailPage extends StatefulWidget {
   final List<int> colorList;

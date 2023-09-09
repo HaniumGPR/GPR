@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'menu_bar.dart';
+import '../menu_bar.dart';
 
 // colorCode -> DB에서 불러와야 함
 // 색상출력 버튼 - onPressed
@@ -54,7 +54,7 @@ class _MyCartState extends State<MyCart> {
           children: [
             Container(
               width: double.infinity,
-              height: deviceHeight - 230,
+              height: deviceHeight - 250,
               margin: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -136,8 +136,5 @@ List<int> separateToRGB(int colorCode) {
   int codeR = (colorCode >> 16) & 0xFF;
   int codeG = (colorCode >> 8) & 0xFF;
   int codeB = (colorCode) & 0xFF;
-  print(codeR);
-  print(codeG);
-  print(codeB);
   return [codeR, codeG, codeB];
 }

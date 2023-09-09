@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../menu_bar.dart';
+import '../../menu_bar.dart';
 
 class ArtPagewithImg extends StatefulWidget {
   const ArtPagewithImg(
