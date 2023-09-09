@@ -87,6 +87,10 @@ class _MyCartState extends State<MyCart> {
                   // TODO : RGB 전달
                   separateToRGB(selectedColor);
                 },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size(double.infinity, double.infinity),
+                ),
                 child: Text(
                   "색상 출력",
                   style: TextStyle(
@@ -119,6 +123,10 @@ class _MyCartState extends State<MyCart> {
           // 만약 a 색상이 선택된 상태에서 b 색상이 선택되었다면 -> a 색상은 선택 해제, b 색상 선택 표시
           selectedColor = colorCode;
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
           style: TextStyle(

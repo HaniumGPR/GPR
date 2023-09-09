@@ -48,6 +48,10 @@ class _EduDetailPageState extends State<EduDetailPage> {
         onPressed: () {
           Navigator.pop(context, colorCode);
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(''),
       ),
     );

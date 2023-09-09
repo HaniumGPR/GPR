@@ -59,6 +59,10 @@ class _FashionPageState extends State<FashionPage> {
                       colorList: colorList, colorSeason: tone)),
             );
           },
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            minimumSize: Size(double.infinity, double.infinity),
+          ),
           child: Container(
             width: 100,
             height: 50,

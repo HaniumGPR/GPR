@@ -145,6 +145,10 @@ class _EducationPageState extends State<EducationPage> {
           });
           showToast("선택한 색상을 초기화했습니다.");
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "초기화",
           style: TextStyle(
@@ -187,6 +191,10 @@ class _EducationPageState extends State<EducationPage> {
             showToast("색상 2개를 선택해주세요");
           }
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "혼합",
           style: TextStyle(
