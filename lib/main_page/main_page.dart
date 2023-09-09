@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../category_widget.dart';
+import 'category_widget.dart';
 import 'art/art_page.dart';
 import 'education/education_page.dart';
 import 'fashion/fashion_page.dart';

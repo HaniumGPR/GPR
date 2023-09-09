@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../menu_bar.dart';
-import '../../show_single_category.dart';
-import '../../show_toast.dart';
+import '../utils/show_single_category.dart';
+import '../utils/show_toast.dart';
 import 'education_colorlist.dart';
 import 'education_detail.dart';
 import 'education_mix.dart';

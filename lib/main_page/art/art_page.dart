@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../menu_bar.dart';
-import '../../show_single_category.dart';
+import '../utils/show_single_category.dart';
 import 'art_page_with_img.dart';
 
 class ArtPage extends StatefulWidget {
