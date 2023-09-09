@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/fashion/fashion_colorlist.dart';
-import 'package:hanium_gpr/fashion/fashion_detail.dart';
+import 'package:hanium_gpr/main_page/fashion/fashion_colorlist.dart';
+import 'package:hanium_gpr/main_page/fashion/fashion_detail.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
+import '../../menu_bar.dart';
+import '../utils/show_single_category.dart';
 
 // 각 톤 별로 이미지 추가
 // 색상마다 선택/선택해제 표시 -> fashion_colorlist의 onPressed() 수정
@@ -59,6 +59,10 @@ class _FashionPageState extends State<FashionPage> {
                       colorList: colorList, colorSeason: tone)),
             );
           },
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            minimumSize: Size(double.infinity, double.infinity),
+          ),
           child: Container(
             width: 100,
             height: 50,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/show_toast.dart';
+import 'package:hanium_gpr/main_page/utils/show_toast.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
+import '../../menu_bar.dart';
+import '../utils/show_single_category.dart';
 
 class FashionDetailPage extends StatefulWidget {
   final List<int> colorList;
@@ -59,6 +59,10 @@ class _FashionDetailPageState extends State<FashionDetailPage> {
             selectColorList.add(colorCode);
           }
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
           style: TextStyle(
@@ -92,6 +96,10 @@ class _FashionDetailPageState extends State<FashionDetailPage> {
           showToast("장바구니에 선택한 색상을 추가했습니다.");
           Navigator.pop(context);
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "선택 완료",
           style: TextStyle(

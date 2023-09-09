@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/my_cart.dart';
-//import 'package:hanium_gpr/login.dart';
 
 import 'category_widget.dart';
+import 'art/art_page.dart';
 import 'education/education_page.dart';
 import 'fashion/fashion_page.dart';
-import 'menu_bar.dart';
-import 'art/art_page.dart';
-
-// 메인 홈페이지
-
-void main() {
-  runApp(MyCart());
-}
+import '../menu_bar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

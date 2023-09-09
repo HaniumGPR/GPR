@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../menu_bar.dart';
+import '../../menu_bar.dart';
 
 class ArtPagewithImg extends StatefulWidget {
   const ArtPagewithImg(
@@ -49,6 +49,10 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
         onPressed: () {
           Navigator.pop(context);
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "완료",
           style: TextStyle(

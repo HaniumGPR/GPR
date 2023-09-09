@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
+import '../../menu_bar.dart';
+import '../utils/show_single_category.dart';
 
 class EduDetailPage extends StatefulWidget {
   final List<int> colorList;
@@ -48,6 +48,10 @@ class _EduDetailPageState extends State<EduDetailPage> {
         onPressed: () {
           Navigator.pop(context, colorCode);
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(''),
       ),
     );

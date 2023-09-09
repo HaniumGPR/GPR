@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'menu_bar.dart';
+import '../menu_bar.dart';
 
 // colorCode -> DB에서 불러와야 함
 // 색상출력 버튼 - onPressed
@@ -15,7 +15,7 @@ class MyCart extends StatefulWidget {
 class _MyCartState extends State<MyCart> {
   // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
-  var selectedColor;
+  var selectedColor = -1;
 
   List<int> colorCode = [
     0xffFFFF99,
@@ -54,7 +54,7 @@ class _MyCartState extends State<MyCart> {
           children: [
             Container(
               width: double.infinity,
-              height: deviceHeight - 230,
+              height: deviceHeight - 250,
               margin: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -87,6 +87,10 @@ class _MyCartState extends State<MyCart> {
                   // TODO : RGB 전달
                   separateToRGB(selectedColor);
                 },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size(double.infinity, double.infinity),
+                ),
                 child: Text(
                   "색상 출력",
                   style: TextStyle(
@@ -119,6 +123,10 @@ class _MyCartState extends State<MyCart> {
           // 만약 a 색상이 선택된 상태에서 b 색상이 선택되었다면 -> a 색상은 선택 해제, b 색상 선택 표시
           selectedColor = colorCode;
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
           style: TextStyle(
@@ -136,8 +144,5 @@ List<int> separateToRGB(int colorCode) {
   int codeR = (colorCode >> 16) & 0xFF;
   int codeG = (colorCode >> 8) & 0xFF;
   int codeB = (colorCode) & 0xFF;
-  print(codeR);
-  print(codeG);
-  print(codeB);
   return [codeR, codeG, codeB];
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hanium_gpr/education/education_colorlist.dart';
-import 'package:hanium_gpr/education/education_detail.dart';
-import 'package:hanium_gpr/education/get_color_from_list.dart';
 
-import '../menu_bar.dart';
-import '../show_single_category.dart';
-import '../show_toast.dart';
+import '../../menu_bar.dart';
+import '../utils/show_single_category.dart';
+import '../utils/show_toast.dart';
+import 'education_colorlist.dart';
+import 'education_detail.dart';
 import 'education_mix.dart';
+import 'get_color_from_list.dart';
 
 class EducationPage extends StatefulWidget {
   const EducationPage({Key? key}) : super(key: key);
@@ -145,6 +145,10 @@ class _EducationPageState extends State<EducationPage> {
           });
           showToast("선택한 색상을 초기화했습니다.");
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "초기화",
           style: TextStyle(
@@ -187,6 +191,10 @@ class _EducationPageState extends State<EducationPage> {
             showToast("색상 2개를 선택해주세요");
           }
         },
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size(double.infinity, double.infinity),
+        ),
         child: Text(
           "혼합",
           style: TextStyle(
