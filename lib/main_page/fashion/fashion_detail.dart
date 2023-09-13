@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/main_page/main.dart';
 import 'package:hanium_gpr/main_page/utils/show_toast.dart';
 
 import '../../menu_bar.dart';
@@ -92,6 +93,11 @@ class _FashionDetailPageState extends State<FashionDetailPage> {
       ),
       child: TextButton(
         onPressed: () {
+          for (var colorCode in selectColorList) {
+            if (!globalColorList.contains(colorCode)) {
+              globalColorList.add(colorCode);
+            }
+          }
           // TODO : db에 selectColorList 추가 -> 기존에 저장된 색상이 다시 추가된다면?
           showToast("장바구니에 선택한 색상을 추가했습니다.");
           Navigator.pop(context);

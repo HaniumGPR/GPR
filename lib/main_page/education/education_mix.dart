@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/main_page/main.dart';
 import 'package:hanium_gpr/main_page/utils/show_toast.dart';
 
 import '../../menu_bar.dart';
@@ -53,8 +54,13 @@ class _MixPageState extends State<MixPage> {
               ),
               child: TextButton(
                 onPressed: () {
+                  if (globalColorList.contains(mixedColor)) {
+                    showToast("장바구니에 존재하는 색상입니다.");
+                  } else {
+                    globalColorList.add(mixedColor);
+                    showToast("장바구니에 색상을 추가했습니다.");
+                  }
                   Navigator.pop(context);
-                  showToast("장바구니에 색상을 추가했습니다.");
                   // TODO : mixedColor DB에 추가
                 },
                 child: Text(

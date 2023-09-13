@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'main_page.dart';
 
+List<int> globalColorList = [];
+
 void main() {
   runApp(MainPage());
 }
