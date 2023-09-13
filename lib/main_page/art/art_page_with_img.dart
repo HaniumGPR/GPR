@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/main_page/main.dart';
 
 import '../../menu_bar.dart';
+import '../utils/show_toast.dart';
 
 class ArtPagewithImg extends StatefulWidget {
   const ArtPagewithImg(
@@ -156,7 +158,12 @@ class _ArtPagewithImgState extends State<ArtPagewithImg> {
             ),
             TextButton(
               onPressed: () {
-                // TODO : 클릭하면 해당 colorCode DB에 저장
+                if (globalColorList.contains(colorCode)) {
+                  showToast("장바구니에 존재하는 색상입니다.");
+                } else {
+                  globalColorList.add(colorCode);
+                  showToast("장바구니에 색상을 추가했습니다.");
+                }
               },
               child: Icon(
                 Icons.shopping_cart,

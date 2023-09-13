@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanium_gpr/main_page/main.dart';
 
 import '../menu_bar.dart';
 
@@ -16,18 +17,6 @@ class _MyCartState extends State<MyCart> {
   // ignore: prefer_typing_uninitialized_variables
   var deviceSize, deviceHeight;
   var selectedColor = -1;
-
-  List<int> colorCode = [
-    0xffFFFF99,
-    0xffCCFFCC,
-    0xffCCCCFF,
-    0xff6600FF,
-    0xffFF00FF,
-    0xffFF6666,
-    0xffFF00DD,
-    0xffFF007F,
-    0xff3300FF,
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +54,9 @@ class _MyCartState extends State<MyCart> {
               ),
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: colorCode.length,
+                  itemCount: globalColorList.length,
                   itemBuilder: (context, index) {
-                    return showColorList(colorCode[index]);
+                    return showColorList(globalColorList[index]);
                   },
                 ),
               ),

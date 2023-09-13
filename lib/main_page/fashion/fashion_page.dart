@@ -29,10 +29,10 @@ class _FashionPageState extends State<FashionPage> {
         body: Column(
           children: [
             showSingleCategory("#패션"),
-            fashionToneBtn("봄 웜톤", colorCodeSpring),
-            fashionToneBtn("여름 쿨톤", colorCodeSummer),
-            fashionToneBtn("가을 웜톤", colorCodeAutum),
-            fashionToneBtn("겨울 쿨톤", colorCodeWinter),
+            fashionToneBtn("봄 웜톤", 0x99fdda23, colorCodeSpring),
+            fashionToneBtn("여름 쿨톤", 0x994ab9f8, colorCodeSummer),
+            fashionToneBtn("가을 웜톤", 0x99ca7f39, colorCodeAutum),
+            fashionToneBtn("겨울 쿨톤", 0x99ac5dad, colorCodeWinter),
           ],
         ),
         bottomNavigationBar: CustomNavigationBar(),
@@ -40,15 +40,14 @@ class _FashionPageState extends State<FashionPage> {
     );
   }
 
-  Container fashionToneBtn(String tone, List<int> colorList) {
+  Container fashionToneBtn(String tone, int btnColor, List<int> colorList) {
     return Container(
         width: double.infinity,
         height: (deviceHeight - 320) / 4,
         alignment: Alignment.centerLeft,
         margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         decoration: BoxDecoration(
-          // Color(색상 코드)로 변경 필요
-          color: Colors.yellow,
+          color: Color(btnColor),
         ),
         child: TextButton(
           onPressed: () {
