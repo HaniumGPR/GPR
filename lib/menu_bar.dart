@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanium_gpr/main_page/main_page.dart';
 import 'package:hanium_gpr/cart_page/my_cart.dart';
+import 'package:hanium_gpr/mypage.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -33,8 +34,9 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MyCart()));
     } else if (index == 2) {
-      // 세 번째 탭이 선택되었을 때의 동작
-    }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MyPage()));
+    } else if (index == 3) {}
   }
 
   @override

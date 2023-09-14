@@ -3,6 +3,8 @@ import 'package:hanium_gpr/main_page/main_page.dart';
 import 'package:hanium_gpr/sign_up.dart';
 
 class LoginApp extends StatelessWidget {
+  const LoginApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,14 +19,15 @@ class LoginApp extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  var _idController = TextEditingController();
-  var _passwordController = TextEditingController();
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                             builder: (context) => MainPage()));
                       }
                     },
-                    child: Text('로그인'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black87,
                       textStyle: TextStyle(
@@ -111,19 +113,19 @@ class _LoginPageState extends State<LoginPage> {
                         letterSpacing: 3.0,
                       ),
                     ),
+                    child: Text('로그인'),
                   ),
                 ),
                 SizedBox(
                   height: 24,
                 ),
-                Container(
+                SizedBox(
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SignupPage()));
                     },
-                    child: Text('회원가입'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black54,
                       textStyle: TextStyle(
@@ -134,6 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                         letterSpacing: 3.0,
                       ),
                     ),
+                    child: Text('회원가입'),
                   ),
                 ),
               ],
