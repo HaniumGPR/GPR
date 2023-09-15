@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 // 회원가입 페이지
 
 class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
   @override
   _SignupPageState createState() => _SignupPageState();
 }
 
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
-  var _idController = TextEditingController();
-  var _passwordController = TextEditingController();
-  var _passwordConfirmationController = TextEditingController();
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordConfirmationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +111,11 @@ class _SignupPageState extends State<SignupPage> {
                       // 계정 생성 로직 구현
                     }
                   },
-                  child: Text('계정 생성'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.black,
                   ),
+                  child: Text('계정 생성'),
                 ),
               ],
             ),
@@ -126,6 +127,7 @@ class _SignupPageState extends State<SignupPage> {
 }
 
 class NextPage extends StatelessWidget {
+  const NextPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -74,7 +74,7 @@ class _MyCartState extends State<MyCart> {
               child: TextButton(
                 onPressed: () {
                   // TODO : RGB 전달
-                  separateToRGB(selectedColor);
+                  sendRGBValues(selectedColor);
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
@@ -108,9 +108,11 @@ class _MyCartState extends State<MyCart> {
       color: Color(colorCode),
       child: TextButton(
         onPressed: () {
+          setState(() {
+            selectedColor = colorCode;
+          });
           // TODO : 해당 색상이 선택되었다는 것을 시각적으로 보여주어야 함
           // 만약 a 색상이 선택된 상태에서 b 색상이 선택되었다면 -> a 색상은 선택 해제, b 색상 선택 표시
-          selectedColor = colorCode;
         },
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
@@ -119,9 +121,14 @@ class _MyCartState extends State<MyCart> {
         child: Text(
           "#${colorCode.toRadixString(16).toUpperCase().substring(2)}",
           style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 17,
-            color: Colors.black,
+            fontWeight:
+                selectedColor == colorCode ? FontWeight.bold : FontWeight.w600,
+            fontSize: selectedColor == colorCode ? 20 : 17,
+            color:
+                // 주어진 색상이 밝은지 어두운지 판단하여 글자색을 검정 또는 하얗게 변경
+                useWhiteForeground(Color(colorCode))
+                    ? Colors.white
+                    : Colors.black,
           ),
         ),
       ),
@@ -129,9 +136,36 @@ class _MyCartState extends State<MyCart> {
   }
 }
 
-List<int> separateToRGB(int colorCode) {
-  int codeR = (colorCode >> 16) & 0xFF;
-  int codeG = (colorCode >> 8) & 0xFF;
-  int codeB = (colorCode) & 0xFF;
-  return [codeR, codeG, codeB];
+bool useWhiteForeground(Color color) {
+  // 공식에 따라 색상의 휘도 계산
+  // (0.299 * R + 0.587 * G + 0.114 * B)
+  double luminance =
+      (color.red * 0.299 + color.green * 0.587 + color.blue * 0.114) / 255;
+
+  if (luminance > 0.5)
+    return false; // 밝은 배경에서 어둡게 써라
+  else
+    return true; // 어두운 배경에서 밝게 써라
+}
+
+// 선택된 색상의 RGB값을 리스트로 변환하고 출력
+void sendRGBValues(int colorCode) {
+  int codeR = getColorRedValue(colorCode);
+  int codeG = getColorGreenValue(colorCode);
+  int codeB = getColorBlueValue(colorCode);
+
+  List<int> rgbValues = [codeR, codeG, codeB];
+  print(rgbValues);
+}
+
+int getColorRedValue(int colorValue) {
+  return ((colorValue >> 16 & 0xFF));
+}
+
+int getColorGreenValue(int colorValue) {
+  return ((colorValue >> 8) & 0xFF);
+}
+
+int getColorBlueValue(int colorValue) {
+  return (colorValue & 0xFF);
 }
